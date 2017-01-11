@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-yzt" version="1.0.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>YiZhangTong</name>
+    <js-module name="YiZhangTong" src="www/YiZhangTong.js">
+        <clobbers target="yzt" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="YiZhangTong">
+                <param name="android-package" value="com.pingan.yzt.YiZhangTong" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+
+        <source-file src="src/android/AndroidDes3Util.java" target-dir="src/com/pingan/yzt" />
+        <source-file src="src/android/YiZhangTong.java" target-dir="src/com/pingan/yzt" />
+        <source-file src="libs/yzt-sso-sdk-1.0.0.aar" target-dir="libs"/>
+
+		<framework src="src/android/yzt-sso-sdk-1.0.0.gradle" custom="true" type="gradleReference" /> 
+    </platform>
+</plugin>
