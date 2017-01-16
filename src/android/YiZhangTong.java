@@ -66,21 +66,25 @@ public class YiZhangTong extends CordovaPlugin {
             SSO.login("", uname, pwd, "N", new Callback() {
                 @Override
                 public void onSuccess(String s) {
-
+                    Map<String,Object> map = new HashMap<String, Object>();
                     Log.d(TAG,String.format("org data:%s",s));
                     try {
                         JSONObject jsonObject = new JSONObject(s);
                         String des3Assert = jsonObject.getString("des3Assert");
                         if (des3Assert == null || des3Assert.equals("")){
-                            callbackContext.success("{'result':'1001','retmsg','接口调用失败。'}");
+                            map.put("result","1001");
+                            map.put("retmsg","接口调用失败。");
+                            callbackContext.success(new JSONObject(map).toString());
                             return;
                         }
                         String userXmlInfo = AndroidDes3Util.decode(des3Assert);
                         Log.d(TAG,String.format("trans data: %s",userXmlInfo));
 
-                        Map<String,Object> map = deal(userXmlInfo);
+                        map = deal(userXmlInfo);
                         if (map == null || !(map.get("result")+"").equals("0000")){
-                            callbackContext.success("{'result':'1000',''retmsg:'登录失败。'}");
+                            map.put("result","1000");
+                            map.put("retmsg","登录失败。");
+                            callbackContext.success(new JSONObject(map).toString());
                             return;
                         }
 
@@ -92,21 +96,29 @@ public class YiZhangTong extends CordovaPlugin {
                         callbackContext.success(obj.toString());
                     } catch (Exception e) {
                         e.printStackTrace();
-                        callbackContext.success("{'result':'1002','retmsg','系统异常'}");
+                        map.put("result","1002");
+                        map.put("retmsg","系统异常");
+                        callbackContext.success(new JSONObject(map).toString());
                     }
 
                 }
 
                 @Override
                 public void onFailed(String s, Throwable throwable) {
+                    Map<String,Object> map = new HashMap<String, Object>();
                     Log.d(TAG,throwable.toString());
-                    callbackContext.success("{'result':'1001','retmsg','接口调用失败。'}");
-                    callbackContext.error(s);
+                    map.put("result","1001");
+                    map.put("retmsg","系统异常");
+                    callbackContext.success(new JSONObject(map).toString());
+                    // callbackContext.error("{'result':'1001','retmsg','"+throwable.toString()+"'}");
                 }
             });
 
         } else {
-            callbackContext.error("Expected one non-empty string argument.");
+            Map<String,Object> map = new HashMap<String, Object>();
+            map.put("result","1001");
+            map.put("retmsg","系统异常");
+            callbackContext.error(new JSONObject(map).toString());
         }
     }
 
