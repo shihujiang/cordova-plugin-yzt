@@ -58,8 +58,13 @@ public class YiZhangTong extends CordovaPlugin {
             String appId = args.getString(0);
             String uname = args.getString(1);
             String pwd = args.getString(2);
-
-            SSO.setTestApi(true);
+            String isTest = args.getString(3);
+            if(isTest.equals("1")){
+                SSO.setTestApi(false);
+            }else{
+                SSO.setTestApi(true);
+            }
+            
             SSO.isDebug();
 
             SSO.init(this.cordova.getActivity(),appId);
