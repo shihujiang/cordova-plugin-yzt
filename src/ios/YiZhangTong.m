@@ -23,10 +23,10 @@
     NSString *debugStr = [command.arguments objectAtIndex:3];
     BOOL isDebug = (debugStr.integerValue == 0) ? YES : NO;
     
-    NSLog(@"mid = %@, account = %@, pwd = %@",mid,account,pwd);
+    NSLog(@"mid = %@, account = %@, pwd = %@, debugStr = %@",mid,account,pwd,debugStr);
     [[SSOEngine sharedInstance] enableDebugMode:isDebug];
     
-    [[SSOEngine sharedInstance] loginWithAccountAndPassword:@"18513855349" password:@"12qwaszx" isAppUser:NO mamcAppId:nil completed:^(NSError *error, id object) {
+    [[SSOEngine sharedInstance] loginWithAccountAndPassword:account password:pwd isAppUser:NO mamcAppId:mid completed:^(NSError *error, id object) {
         
         NSString *retJsonResult = @"";
         
