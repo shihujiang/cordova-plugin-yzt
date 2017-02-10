@@ -20,9 +20,11 @@
     NSString* mid = [command.arguments objectAtIndex:0];
     NSString *account = [command.arguments objectAtIndex:1];
     NSString *pwd = [command.arguments objectAtIndex:2];
+    NSString *debugStr = [command.arguments objectAtIndex:3];
+    BOOL isDebug = (debugStr.integerValue == 0) ? YES : NO;
     
     NSLog(@"mid = %@, account = %@, pwd = %@",mid,account,pwd);
-    [[SSOEngine sharedInstance] enableDebugMode:NO];
+    [[SSOEngine sharedInstance] enableDebugMode:isDebug];
     
     [[SSOEngine sharedInstance] loginWithAccountAndPassword:@"18513855349" password:@"12qwaszx" isAppUser:NO mamcAppId:nil completed:^(NSError *error, id object) {
         
