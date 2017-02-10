@@ -23,7 +23,7 @@
             </feature>
         </config-file>
         <source-file src="src/ios/YiZhangTong.m" />
-        <source-file src="src/ios/Info.plist" />
+        <source-file src="src/ios/Info.plist" target-dir="src" />
         <framework custom="true" src="libs/SSO.framework"  />
     </platform>
 </plugin>
