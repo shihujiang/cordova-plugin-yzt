@@ -54,7 +54,7 @@ public class YiZhangTong extends CordovaPlugin {
 
     private void coolMethod(JSONArray args, final CallbackContext callbackContext) throws  JSONException{
         if (args != null && args.length() > 0) {
-            Log.d(TAG,args.get(0)+","+args.get(1)+","+args.get(2));
+            //Log.d(TAG,args.get(0)+","+args.get(1)+","+args.get(2));
             String appId = args.getString(0);
             String uname = args.getString(1);
             String pwd = args.getString(2);
@@ -72,7 +72,7 @@ public class YiZhangTong extends CordovaPlugin {
                 @Override
                 public void onSuccess(String s) {
                     Map<String,Object> map = new HashMap<String, Object>();
-                    Log.d(TAG,String.format("org data:%s",s));
+                    //Log.d(TAG,String.format("org data:%s",s));
                     try {
                         JSONObject jsonObject = new JSONObject(s);
                         String des3Assert = jsonObject.getString("des3Assert");
@@ -83,7 +83,7 @@ public class YiZhangTong extends CordovaPlugin {
                             return;
                         }
                         String userXmlInfo = AndroidDes3Util.decode(des3Assert);
-                        Log.d(TAG,String.format("trans data: %s",userXmlInfo));
+                        //Log.d(TAG,String.format("trans data: %s",userXmlInfo));
 
                         map = deal(userXmlInfo);
                         if (map == null || !(map.get("result")+"").equals("0000")){
@@ -97,7 +97,7 @@ public class YiZhangTong extends CordovaPlugin {
                         rntUserInfo.put("result","0000");
                         rntUserInfo.put("data",(Map<String,String>)map.get("atts"));
                         JSONObject obj=new JSONObject(rntUserInfo);
-                        Log.d(TAG,String.format("return json: %s",obj.toString()));
+                        //Log.d(TAG,String.format("return json: %s",obj.toString()));
                         callbackContext.success(obj.toString());
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -111,7 +111,7 @@ public class YiZhangTong extends CordovaPlugin {
                 @Override
                 public void onFailed(String s, Throwable throwable) {
                     Map<String,Object> map = new HashMap<String, Object>();
-                    Log.d(TAG,throwable.toString());
+                    //Log.d(TAG,throwable.toString());
                     map.put("result","1001");
                     map.put("retmsg","系统异常");
                     callbackContext.success(new JSONObject(map).toString());
@@ -144,7 +144,7 @@ public class YiZhangTong extends CordovaPlugin {
                 }
 
                 map.put(node.getNodeName(),node.getTextContent());
-                Log.d(TAG,String.format("second child: %s",node.getNodeName()+","+node.getTextContent()));
+                //Log.d(TAG,String.format("second child: %s",node.getNodeName()+","+node.getTextContent()));
 
                 if (node.getNodeName().equals("attributes")){
                     NodeList atts = node.getChildNodes();
