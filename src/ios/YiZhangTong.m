@@ -46,11 +46,11 @@
             NSData *tempJsonData = [NSJSONSerialization dataWithJSONObject:retDic options:NSJSONWritingPrettyPrinted error:nil];
             NSString *resultJsonStr = [[NSString alloc] initWithData:tempJsonData encoding:NSUTF8StringEncoding];
             //需要输出的json字符串
-            NSLog(@"result = %@",resultJsonStr);
+            //NSLog(@"result = %@",resultJsonStr);
             
             retJsonResult = resultJsonStr;
         }else {
-            NSLog(@"%@", object);
+            //NSLog(@"%@", object);
             //返回dictionary
             NSMutableDictionary *jsonDic = (NSMutableDictionary *)object;
             NSDictionary *assertionDic = [jsonDic objectForKey:@"assertion"];
@@ -117,7 +117,7 @@
             NSData *tempJsonData = [NSJSONSerialization dataWithJSONObject:retDic options:NSJSONWritingPrettyPrinted error:nil];
             NSString *resultJsonStr = [[NSString alloc] initWithData:tempJsonData encoding:NSUTF8StringEncoding];
             //需要输出的json字符串
-            NSLog(@"result = %@",resultJsonStr);
+            //NSLog(@"result = %@",resultJsonStr);
             
             retJsonResult = resultJsonStr;
             
